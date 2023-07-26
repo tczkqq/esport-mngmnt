@@ -1,0 +1,39 @@
+<form class="center fill" [formGroup]="form" (submit)="onSubmit()">
+  <div class="flex flex-column justify-content-around">
+    <h1 class="p-text-secondary" style="align-self: center">Login</h1>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+      <span class="p-float-label">
+        <input
+          type="text"
+          id="username"
+          pInputText
+          formControlName="username"
+        />
+        <label for="username">Username</label>
+      </span>
+    </div>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <span class="p-float-label">
+        <input
+          type="password"
+          id="password"
+          pInputText
+          formControlName="password"
+        />
+        <label for="password">Password</label>
+      </span>
+    </div>
+    <p-button
+      class="align-self-center"
+      label="Login"
+      [disabled]="!form.valid"
+      type="submit"
+    ></p-button>
+  </div>
+</form>

@@ -1,0 +1,172 @@
+<p-panel [header]="editedItem ? 'Edit event' : 'Add new event'">
+  <form [formGroup]="form" class="form-content">
+    <span class="p-float-label form-row">
+      <input
+        id="name-input"
+        type="text"
+        class="input"
+        pInputText
+        formControlName="name"
+      />
+      <label for="name-input">Event name</label>
+    </span>
+
+    <div class="form-row">
+      <div class="space-items">
+        <span>
+          Game
+          <p-dropdown
+            [options]="games"
+            formControlName="game"
+            optionLabel="name"
+            optionValue="id"
+          ></p-dropdown>
+        </span>
+
+        <span>
+          Max participants
+          <p-inputNumber
+            label="asad"
+            formControlName="max_participants"
+            [min]="4"
+            [showButtons]="true"
+          ></p-inputNumber>
+        </span>
+
+        <span>
+          Date
+          <p-calendar
+            formControlName="date"
+            [showTime]="true"
+            hourFormat="24"
+            [minDate]="today"
+            dateFormat="yy/mm/dd"
+          ></p-calendar>
+        </span>
+
+        <span>
+          Remote <p-inputSwitch formControlName="remote"></p-inputSwitch
+        ></span>
+
+        <span>
+          Coordinates
+          <input
+            id="name-input"
+            type="text"
+            pInputText
+            formControlName="coordinates"
+          />
+        </span>
+
+        <span>
+          Address
+          <input
+            id="name-input"
+            type="text"
+            pInputText
+            formControlName="address"
+          />
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <p-fileUpload
+        mode="basic"
+        accept="image/*"
+        (onSelect)="onUpload($event)"
+        [auto]="false"
+        chooseLabel="Change cover"
+      ></p-fileUpload>
+      <img
+        *ngIf="editedItem?.cover"
+        class="image-preview"
+        [src]="editedItem.cover"
+      />
+      <span *ngIf="!editedItem?.cover">No image to preview</span>
+    </div>
+
+    <div class="form-row">
+      <h4>Description</h4>
+      <p-editor formControlName="description"></p-editor>
+    </div>
+
+    <div class="form-row">
+      <h4>Rules</h4>
+      <p-editor formControlName="rules"></p-editor>
+    </div>
+
+    <div class="form-row">
+      <h4>Prizes</h4>
+      <p-editor formControlName="prizes"></p-editor>
+    </div>
+
+    <div class="form-row">
+      <h4>Contact</h4>
+      <p-editor formControlName="contact"></p-editor>
+    </div>
+  </form>
+
+  <div class="inline-flex">
+    <p-button
+      label="Reset"
+      icon="pi pi-times"
+      styleClass="p-button-danger"
+      class="space-buttons"
+      (onClick)="onReset()"
+    ></p-button>
+    <p-button
+      [label]="editedItem ? 'Update' : 'Submit'"
+      icon="pi pi-check"
+      class="space-buttons"
+      [disabled]="!form.valid"
+      (onClick)="onSubmit()"
+    ></p-button>
+  </div>
+</p-panel>
+<p-panel header="Announcments">
+  <p-accordion [multiple]="true">
+    <p-accordionTab
+      *ngFor="
+        let ann of announcements;
+        let index = index;
+        trackBy: trackByIndex
+      "
+    >
+      <ng-template pTemplate="header">
+        {{ ann.date }} | {{ ann.event_obj.name }} | {{ ann.title }}
+      </ng-template>
+      <p>
+        <p-button
+          pRipple
+          label="Edit"
+          icon="pi pi-pencil"
+          class="space-buttons"
+          styleClass="p-button-warning"
+          [routerLink]="['/dashboard', 'announcements', ann.id.toString()]"
+        ></p-button>
+        <p-button
+          pRipple
+          label="Delete"
+          icon="pi pi-times"
+          class="space-buttons"
+          styleClass="p-button-danger"
+          (onClick)="onDelete(ann)"
+        ></p-button>
+      </p>
+      <p-divider></p-divider>
+      <h1>{{ ann.title }}</h1>
+      <p-divider></p-divider>
+      <p-editor
+        [readonly]="true"
+        [(ngModel)]="announcements[index].description"
+      >
+        <p-header hidden>
+          <span class="ql-formats"></span>
+        </p-header>
+      </p-editor>
+    </p-accordionTab>
+  </p-accordion>
+</p-panel>
+<p-panel header="Rounds"> </p-panel>
+<p-panel header="Teams"> </p-panel>

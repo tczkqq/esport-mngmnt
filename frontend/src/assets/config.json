@@ -1,0 +1,21 @@
+{
+    "endpoints": {
+        "login": "/api/auth/login/",
+        "register": "/api/auth/register/",
+        "logout": "/api/auth/logout/",
+        "user": "/api/auth/user/",
+        "settings": "/api/settings/",
+        "announcements": "/api/announcements/",
+        "games": "/api/games/",
+        "countries": "/api/countries/",
+        "teams": "/api/teams/",
+        "matches": "/api/matches/",
+        "rounds": "/api/rounds/",
+        "events": "/api/events/",
+        "posts": "/api/posts/",
+        "statuses": "/api/statuses/",
+        "players": "/api/players/"
+
+    },
+    "api": "http://127.0.0.1:8000"
+}

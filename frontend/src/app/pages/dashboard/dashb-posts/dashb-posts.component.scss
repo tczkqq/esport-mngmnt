@@ -1,0 +1,21 @@
+i.pi {
+    font-size: large;
+    margin-right: 10px;
+}
+
+.space-buttons {
+    margin-right: 10px
+}
+
+:host ::ng-deep .ql-toolbar.ql-snow {
+    display: none;
+}
+
+:host ::ng-deep .p-editor-content {
+    border: 0 !important;
+    
+    .ql-editor {
+        background-color: transparent;
+        padding-inline: 0;
+    }
+}

@@ -1,0 +1,61 @@
+<p-panel header="List of Announcements">
+  <ng-template pTemplate="icons">
+    <p-dropdown
+      [options]="events"
+      optionLabel="name"
+      optionValue="id"
+      placeholder="Select event"
+      (onChange)="refreshData($event)"
+    ></p-dropdown>
+    <p-button
+      pRipple
+      label="Add new ann"
+      icon="pi pi-plus"
+      class="space-buttons"
+      routerLink="add"
+    ></p-button>
+  </ng-template>
+
+  <p-accordion [multiple]="true">
+    <p-accordionTab
+      *ngFor="
+        let ann of announcements;
+        let index = index;
+        trackBy: trackByIndex
+      "
+    >
+      <ng-template pTemplate="header">
+        {{ ann.date }} | {{ ann.event_obj.name }} | {{ ann.title }}
+      </ng-template>
+      <p>
+        <p-button
+          pRipple
+          label="Edit"
+          icon="pi pi-pencil"
+          class="space-buttons"
+          styleClass="p-button-warning"
+          [routerLink]="ann.id.toString()"
+        ></p-button>
+        <p-button
+          pRipple
+          label="Delete"
+          icon="pi pi-times"
+          class="space-buttons"
+          styleClass="p-button-danger"
+          (onClick)="onDelete(ann)"
+        ></p-button>
+      </p>
+      <p-divider></p-divider>
+      <h1>{{ ann.title }}</h1>
+      <p-divider></p-divider>
+      <p-editor
+        [readonly]="true"
+        [(ngModel)]="announcements[index].description"
+      >
+        <p-header hidden>
+          <span class="ql-formats"></span>
+        </p-header>
+      </p-editor>
+    </p-accordionTab>
+  </p-accordion>
+</p-panel>

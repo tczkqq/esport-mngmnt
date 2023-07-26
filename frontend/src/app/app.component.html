@@ -1,0 +1,16 @@
+<div class="structure" *ngIf="requestSent">
+  <app-nav></app-nav>
+  <div class="p-component">
+    <router-outlet></router-outlet>
+  </div>
+  <p-toast key="main" position="bottom-right"></p-toast>
+  <p-confirmDialog
+    header="Confirmation"
+    icon="pi pi-exclamation-triangle"
+  ></p-confirmDialog>
+</div>
+
+<app-loading
+  label="Waiting for server response..."
+  *ngIf="!requestSent"
+></app-loading>

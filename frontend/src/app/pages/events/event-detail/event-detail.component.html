@@ -1,0 +1,124 @@
+<main class="out" *ngIf="!loading">
+  <p-panel header="Event detail">
+    <div class="info">
+      <p class="event-img"><img [src]="event.cover" /></p>
+
+      <p-tabView>
+        <p-tabPanel header="Description">
+          <p-editor [readonly]="true" [(ngModel)]="event.description">
+            <p-header hidden>
+              <span class="ql-formats"></span>
+            </p-header>
+          </p-editor>
+        </p-tabPanel>
+
+        <p-tabPanel header="Rules">
+          <p-editor [readonly]="true" [(ngModel)]="event.rules">
+            <p-header hidden>
+              <span class="ql-formats"></span>
+            </p-header>
+          </p-editor>
+        </p-tabPanel>
+
+        <p-tabPanel header="Prizes">
+          <p-editor [readonly]="true" [(ngModel)]="event.prizes">
+            <p-header hidden>
+              <span class="ql-formats"></span>
+            </p-header>
+          </p-editor>
+        </p-tabPanel>
+
+        <p-tabPanel header="Contact">
+          <p-editor [readonly]="true" [(ngModel)]="event.contact">
+            <p-header hidden>
+              <span class="ql-formats"></span>
+            </p-header>
+          </p-editor>
+        </p-tabPanel>
+
+        <p-tabPanel header="Brackets">
+          <p-organizationChart [value]="data"></p-organizationChart>
+        </p-tabPanel>
+
+        <p-tabPanel header="Teams">
+          <div class="teams-apper">
+            <p-card
+              *ngFor="let team of teams"
+              [header]="team.name"
+              [style]="{ width: '300px' }"
+              styleClass="p-card-shadow"
+            >
+              <ng-template pTemplate="subtitle">
+                {{ team?.country_obj?.name }}
+              </ng-template>
+              <ng-template pTemplate="header">
+                <img alt="Card" [src]="team.logo" />
+              </ng-template>
+              <p-chip
+                *ngFor="let player of team.players_obj"
+                [label]="player.nickname"
+                [routerLink]="['/profile', player.id]"
+              ></p-chip>
+            </p-card>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="Announcments">
+          <p-accordion [multiple]="true">
+            <p-accordionTab
+              *ngFor="
+                let ann of announcements;
+                let index = index;
+                trackBy: trackByIndex
+              "
+            >
+              <ng-template pTemplate="header">
+                {{ ann.date }}
+              </ng-template>
+              <h1>{{ ann.title }}</h1>
+              <p-divider></p-divider>
+              <p-editor
+                [readonly]="true"
+                [(ngModel)]="announcements[index].description"
+              >
+                <p-header hidden>
+                  <span class="ql-formats"></span>
+                </p-header>
+              </p-editor>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    <div class="details">
+      <p>
+        <img
+          class="game-img"
+          [src]="'http://127.0.0.1:8000' + event.game_obj?.logo"
+        />
+        {{ event.game_obj?.name }}
+      </p>
+      <p-divider></p-divider>
+
+      <p><strong>Name:</strong> {{ event.name }}</p>
+      <p><strong>Remote:</strong> {{ event.remote }}</p>
+      <p><strong>Address:</strong> {{ event.address | nullHandler }}</p>
+      <p><strong>Coordinates:</strong> {{ event.coordinates | nullHandler }}</p>
+      <p><strong>Date:</strong> {{ event.date | date : "YYYY-MM-d HH:mm" }}</p>
+      <p>
+        <strong>Participants:</strong> {{ teams?.length | nullHandler : "0" }} /
+        {{ event.max_participants | nullHandler }}
+      </p>
+      <p-button
+        [label]="joined ? 'Already joined' : 'Join'"
+        [disabled]="joined || teams.length >= event.max_participants"
+        (onClick)="joinEvent(event.id)"
+      ></p-button>
+    </div>
+  </p-panel>
+</main>
+
+<app-loading
+  label="Waiting for server response..."
+  *ngIf="loading"
+></app-loading>

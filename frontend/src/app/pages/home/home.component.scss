@@ -1,0 +1,25 @@
+:host ::ng-deep .p-panel {
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    gap: 10rem;
+}
+
+.card {
+    width: 33rem;
+}
+
+:host ::ng-deep .ql-toolbar.ql-snow {
+    display: none;
+}
+
+:host ::ng-deep .p-editor-content {
+    border: 0 !important;
+
+    .ql-editor {
+        background-color: transparent;
+        padding-inline: 0;
+    }
+}

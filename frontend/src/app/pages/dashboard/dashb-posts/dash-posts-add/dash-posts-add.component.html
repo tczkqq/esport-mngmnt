@@ -1,0 +1,37 @@
+<p-panel header="Add new post">
+  <form [formGroup]="form" class="form-content">
+    <span class="p-float-label form-row">
+      <input
+        id="name-input"
+        type="text"
+        class="input"
+        pInputText
+        formControlName="title"
+      />
+      <label for="name-input">Name</label>
+    </span>
+    <div class="form-row">
+      <p-inputSwitch formControlName="active"></p-inputSwitch>
+      Active
+    </div>
+    <div class="form-row">
+      <p-editor formControlName="description"></p-editor>
+    </div>
+  </form>
+
+  <div class="inline-flex">
+    <p-button
+      label="Reset"
+      icon="pi pi-times"
+      styleClass="p-button-danger"
+      class="space-buttons"
+      (onClick)="onReset()"
+    ></p-button>
+    <p-button
+      [label]="editedItem ? 'Update' : 'Submit'"
+      icon="pi pi-check"
+      class="space-buttons"
+      (onClick)="onSubmit()"
+    ></p-button>
+  </div>
+</p-panel>

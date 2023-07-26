@@ -1,0 +1,11 @@
+<main class="out">
+  <p-panel header="User details">
+    <p>Login: {{ user?.username | nullHandler : "- - -" }}</p>
+    <p>First Name: {{ user?.first_name | nullHandler : "- - -" }}</p>
+    <p>Last name: {{ user?.last_name | nullHandler : "- - -" }}</p>
+    <p>Nickname: {{ user?.user_obj?.nickname | nullHandler : "- - -" }}</p>
+    <p>
+      Country: {{ user?.user_obj?.country_obj?.name | nullHandler : "- - -" }}
+    </p>
+  </p-panel>
+</main>

@@ -1,0 +1,11 @@
+.p-inputgroup {
+    margin-bottom: 30px;
+}
+
+.p-password {
+    width: 100%;
+    
+}
+:host ::ng-deep .p-password input {
+    width: 100%
+}

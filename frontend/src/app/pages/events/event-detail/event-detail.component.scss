@@ -1,0 +1,43 @@
+:host ::ng-deep .ql-toolbar.ql-snow {
+    display: none;
+}
+
+:host ::ng-deep .p-editor-content {
+    border: 0 !important;
+
+    .ql-editor {
+        background-color: transparent;
+        padding-inline: 0;
+    }
+}
+:host ::ng-deep.p-panel-content { 
+    display: flex;
+    flex-direction: row;
+
+
+}    
+.details {
+    width: 20%;
+    
+}
+.event-img {
+    width: 70%;
+
+    img {
+        width: 100%;
+    }
+}
+
+.info {
+    width: 70%;
+    min-width: 70%;
+}
+
+.flag {
+    width: 35px;
+    height: 35px;
+}
+
+:host ::ng-deep .teams-apper {
+    display: flex;
+}

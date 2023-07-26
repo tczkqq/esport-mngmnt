@@ -1,0 +1,25 @@
+:host ::ng-deep .inline-flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.space-buttons {
+    margin-right: 10px
+}
+
+.form-content { 
+    margin-top: 20px;
+}
+
+
+.form-row {
+    width: 100%;
+    margin-bottom: 25px;
+
+    .input,
+    .full-button {
+        width: 100%;
+    }
+}

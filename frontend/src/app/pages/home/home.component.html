@@ -1,0 +1,50 @@
+<main class="out">
+  <p-panel header="Upcoming events">
+    <p-table [value]="events">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Remote</th>
+          <th>Max participants</th>
+          <th>Game</th>
+          <th>Type</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-event>
+        <tr>
+          <td>{{ event.name }}</td>
+          <td>{{ event.remote }}</td>
+          <td>{{ event.max_participants }}</td>
+          <td>
+            {{
+              event.eventType === 1
+                ? "League of Legends"
+                : "Counter Strike Global Offensive"
+            }}
+          </td>
+          <td>{{ event.eventType === 1 ? "League" : "Ladder" }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+
+  <p-panel header="News">
+    <p-accordion [multiple]="true">
+      <p-accordionTab
+        *ngFor="let post of posts; let index = index; trackBy: trackByIndex"
+        [selected]="index < 3 ? true : false"
+      >
+        <ng-template pTemplate="header">
+          {{ post.date }}
+        </ng-template>
+        <h1>{{ post.title }}</h1>
+        <p-divider></p-divider>
+        <p-editor [readonly]="true" [(ngModel)]="posts[index].description">
+          <p-header hidden>
+            <span class="ql-formats"></span>
+          </p-header>
+        </p-editor>
+      </p-accordionTab>
+    </p-accordion>
+  </p-panel>
+</main>

@@ -1,0 +1,40 @@
+<form [formGroup]="form" class="dialog-content">
+  <span class="p-float-label form-row">
+    <input
+      id="name-input"
+      type="text"
+      class="input"
+      pInputText
+      formControlName="name"
+    />
+    <label for="name-input">Name</label>
+  </span>
+
+  <div class="form-row">
+    <p-fileUpload
+      mode="basic"
+      accept="image/*"
+      (onSelect)="onUpload($event)"
+      [auto]="false"
+      chooseLabel="Change logo"
+    ></p-fileUpload>
+    <img *ngIf="item?.logo" class="image-preview" [src]="item.logo" />
+    <span *ngIf="!item?.logo">No image to preview</span>
+  </div>
+</form>
+
+<div class="inline-flex">
+  <p-button
+    label="Cancel"
+    icon="pi pi-times"
+    styleClass="p-button-danger"
+    class="space-buttons"
+    (onClick)="onClose()"
+  ></p-button>
+  <p-button
+    [label]="item ? 'Update' : 'Submit'"
+    icon="pi pi-check"
+    class="space-buttons"
+    (onClick)="onSubmit()"
+  ></p-button>
+</div>

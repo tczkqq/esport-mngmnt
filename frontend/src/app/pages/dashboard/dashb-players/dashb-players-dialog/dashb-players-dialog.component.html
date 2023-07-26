@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="form-content">
+  <div class="p-float-label form-row">
+    <input
+      id="name-input"
+      type="text"
+      class="input"
+      pInputText
+      formControlName="nickname"
+    />
+    <label for="name-input">Nickname</label>
+  </div>
+
+  <div class="form-row">
+    <p-dropdown
+      [options]="countries"
+      formControlName="country"
+      optionLabel="name"
+      optionValue="id"
+      placeholder="Select country"
+    ></p-dropdown>
+  </div>
+  <div class="form-row">
+    <p-dropdown
+      [options]="teams"
+      formControlName="team"
+      optionLabel="name"
+      optionValue="id"
+      placeholder="Select team"
+    ></p-dropdown>
+  </div>
+</form>
+
+<div class="inline-flex">
+  <p-button
+    label="Cancel"
+    icon="pi pi-times"
+    styleClass="p-button-danger"
+    class="space-buttons"
+    (onClick)="onClose()"
+  ></p-button>
+  <p-button
+    [label]="editedItem ? 'Update' : 'Submit'"
+    icon="pi pi-check"
+    class="space-buttons"
+    [disabled]="!form.valid"
+    (onClick)="onSubmit()"
+  ></p-button>
+</div>

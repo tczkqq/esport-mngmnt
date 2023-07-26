@@ -1,0 +1,22 @@
+<main class="out">
+  <p-panel header="All events">
+    <p-table [value]="events">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Remote</th>
+          <th>Max participants</th>
+          <th>Game</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-event>
+        <tr [routerLink]="event.id">
+          <td>{{ event.name }}</td>
+          <td>{{ event.remote }}</td>
+          <td>{{ event.max_participants }}</td>
+          <td>{{ event.game_obj.name }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</main>

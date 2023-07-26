@@ -1,0 +1,24 @@
+<h3>Join using code</h3>
+<form [formGroup]="form">
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+    <input
+      type="number"
+      pInputText
+      formControlName="team_id"
+      placeholder="Team ID"
+    />
+  </div>
+
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+    <input
+      type="password"
+      pInputText
+      formControlName="secret_join_code"
+      placeholder="Secret team code"
+    />
+  </div>
+
+  <p-button label="Join existing team" (onClick)="onSubmit()"></p-button>
+</form>

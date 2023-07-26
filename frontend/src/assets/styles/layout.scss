@@ -1,0 +1,30 @@
+.center-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.center-vertizal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fill {
+    height: 100%;
+    width: 100%;
+}
+
+.structure {
+    height: 100%;
+}
+
+.out {
+    height: 93%;
+    padding: 30px;
+}

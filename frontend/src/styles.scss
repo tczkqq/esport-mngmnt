@@ -1,0 +1,17 @@
+@import './assets/styles/layout.scss';
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.active {
+    cursor: pointer;
+}
+
+
+.game-img {
+    max-width: 20px;
+    max-height: 20px;
+}

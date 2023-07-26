@@ -1,0 +1,33 @@
+<main class="out">
+  <p-panel header="Join team" *ngIf="!hasTeam">
+    <h2>You are not part of any team</h2>
+    <div class="actions">
+      <app-team-join class="sec"></app-team-join>
+      <p-divider layout="vertical">
+        <b>OR</b>
+      </p-divider>
+      <app-team-add-edit class="sec"></app-team-add-edit>
+    </div>
+  </p-panel>
+  <p-panel header="My team" *ngIf="hasTeam && team">
+    <div class="prof">
+      <p-card
+        [header]="team.name"
+        [style]="{ width: '300px' }"
+        styleClass="p-card-shadow"
+      >
+        <ng-template pTemplate="subtitle">
+          {{ team?.country_obj?.name }}
+        </ng-template>
+        <ng-template pTemplate="header">
+          <img alt="Card" [src]="team.logo" />
+        </ng-template>
+        <p-chip
+          *ngFor="let player of team.players_obj"
+          [label]="player.nickname"
+          [routerLink]="['/profile', player.id]"
+        ></p-chip>
+      </p-card>
+    </div>
+  </p-panel>
+</main>
